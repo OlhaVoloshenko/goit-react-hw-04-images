@@ -12,6 +12,8 @@ import { fetchImgs, isLastPages } from 'services/api-pixabay';
 import { Modal } from './Modal';
 import { ToastContainer } from 'react-toastify';
 
+//import { scrollTo } from 'scroll-js';
+
 export const App = () => {
   const isMounted = useRef(false);
 
@@ -38,8 +40,8 @@ export const App = () => {
   }, [showModal, images]);
 
   const handleLoadMore = () => {
-    setPage(prevPage => prevPage + 1);
-    setShowModal(document.documentElement.showModal - 150);
+    setPage(page => page + 1);
+    setShowModal(document.documentElement.showModal);
   };
 
   const handleQuery = query => {
@@ -92,10 +94,7 @@ export const App = () => {
   };
 
   const showModalNewWindow = showModal => {
-    window.scrollTo({
-      top: showModal,
-      behavior: 'smooth',
-    });
+    window.scrollBy(showModal, 150);
   };
 
   return (
